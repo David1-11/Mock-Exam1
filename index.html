@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBEJU SENIOR HIGH - Mock Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <div class="exam-container">
+        <header>
+            <div class="school-header">
+                <h1>MOCK EXAM</h1>
+                <p>Official SS2 Portal</p>
+            </div>
+            
+            <div class="header-right">
+                <div class="theme-selector">
+                    <div class="theme-dot default" onclick="setTheme('default')" title="Default"></div>
+                    <div class="theme-dot dark" onclick="setTheme('dark')" title="Dark Mode"></div>
+                    <div class="theme-dot midnight" onclick="setTheme('midnight')" title="Midnight"></div>
+                    <div class="theme-dot light" onclick="setTheme('light')" title="Light"></div>
+                </div>
+                <div id="timer-box">80:00</div>
+            </div>
+        </header>
+
+        <div id="progress-container" class="hidden">
+            <div id="progress-bar"></div>
+        </div>
+
+        <div id="quiz-body">
+            <div id="start-screen">
+                <div class="welcome-box">
+                    <div class="icon">🎓</div>
+                    <h3>Candidate Login</h3>
+                    <p>Provide your full name to access your exam paper.</p>
+                </div>
+                <input type="text" id="student-name" placeholder="Surname First, Other Names" required>
+                <button id="begin-btn" onclick="startExam()">START EXAMINATION</button>
+            </div>
+
+            <div id="exam-screen" class="hidden">
+                <div class="exam-meta">
+                    <span id="q-number">Question 1/100</span>
+                    <span id="subject-tag">GENERAL STUDIES</span>
+                </div>
+                <div id="question-area">
+                    <p id="q-text">Loading...</p>
+                    <div id="options-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="exam-controls" class="hidden">
+            <button class="nav-btn" id="prev-btn" onclick="navigate(-1)">Previous</button>
+            <div class="status-pill"><span id="answered-count">0</span> / <span id="total-count">0</span> Answered</div>
+            <button class="nav-btn" id="next-btn" onclick="navigate(1)">Next</button>
+            <button id="submit-btn" class="hidden" onclick="finishExam()">FINISH & REVIEW</button>
+        </div>
+    </div>
+
+    <div id="review-modal" class="hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-score"></h2>
+                <p>Detailed Performance Analysis</p>
+            </div>
+            <div id="review-list"></div>
+            <button id="confirm-btn" onclick="confirmSubmission()">GENERATE CERTIFICATE & SUBMIT</button>
+        </div>
+    </div>
+
+    <footer class="dev-footer">
+        <p>System Developed by <a href="https://wa.me/2347035646208" class="wa-link">Owoaje David</a></p>
+    </footer>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
